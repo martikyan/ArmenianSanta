@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.ItemProperties.ArmSantaBot PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="ArmSantaBot Status">
     <Files>
-      <File FileName="ArmSantaBot/Program.cs" Line="69" Column="26" />
+      <File FileName="ArmSantaBot/Program.cs" Line="30" Column="20" />
       <File FileName="ArmSantaBot Status" />
     </Files>
   </MonoDevelop.Ide.Workbench>

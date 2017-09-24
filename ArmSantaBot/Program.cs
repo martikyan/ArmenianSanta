@@ -29,7 +29,7 @@ namespace ArmSantaBot
 
 		private static void StartTimeConfigurer()
 		{
-			Thread.Sleep(1000 * (60 - DateTime.Now.Second)); //Sync it to check as minute starts
+            Thread.Sleep(1000 * (60 - (DateTime.Now.Second > 55 ? 60 : DateTime.Now.Second)) ); //Sync it to check as minute starts
 			while (true)
 			{
 				Console.WriteLine("Next hour check in {0} minutes", 60 - DateTime.Now.Minute);
