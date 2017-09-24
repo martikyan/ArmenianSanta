@@ -22,7 +22,7 @@ namespace ArmSantaBot
 		};
 
 		private static string[] msgDescr = {
-			"", "կակոյ նիբուդ\' ", "ոմն ", "երկար թվացող ", "ինչ որ ", "դաժան ", "մոտ ",
+			"", "կակոյ նիբուդ\' ", "ոմն ", "երկար թվացող ", "ինչ որ ", "մոտ ",
 			"անիմաստ թվացող ", "սամֆինգ լայք ", "նեյտրալ ", "մի ամբողջ կյանք՝ ", "ուղիղ ", "սաղ-սաղ ",
 		};
 
@@ -48,10 +48,11 @@ namespace ArmSantaBot
 		public static void Main(string[] args)
 		{
 			string tweet;
-			int daysLeft;
+			int daysLeft, startIndex, descrIndex;
 			DateTime now;
 			DateTime end;
             bool uniqueMessage;
+
 
 			while (true)
 			{
@@ -60,11 +61,13 @@ namespace ArmSantaBot
 				now = DateTime.Now;
 				end = new DateTime(now.Year + 1, 1, 1);
 				daysLeft = (int)(end - now).TotalDays;
-                uniqueMessage = (rnd.Next(0, 31) >= 25) ? false : true;
+                uniqueMessage = (rnd.Next(0, 31) >= 25);
 
-				tweet = (now.Day == 1) ? "Շնորհավոր Նոր Տարի!" : $"{msgStart[rnd.Next(0, msgStart.Length)]} մնաց " +
-                    $"{msgDescr[uniqueMessage ? rnd.Next(0, msgDescr.Length) : 0]}" +
-																 $"{daysLeft} օր:";
+                startIndex = uniqueMessage ? rnd.Next(1, msgStart.Length) : 0;
+                descrIndex = uniqueMessage ? rnd.Next(1, msgDescr.Length) : 0;
+
+                tweet = (now.Day == 1) ? "Շնորհավոր Նոր Տարի!" : $"{msgStart[startIndex]} մնաց " +
+                    $"{msgDescr[descrIndex]}" + $"{daysLeft} օր:";
 
 				Console.WriteLine("Tweeting the tweet: " + tweet);
 				TService.SendTweet(new SendTweetOptions { Status = tweet });
