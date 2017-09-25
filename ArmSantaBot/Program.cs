@@ -47,7 +47,7 @@ namespace ArmSantaBot
 
         private static string PercentageDrawer(int day, bool leapYear = false){
             int daysInYear = leapYear ? 366 : 365;
-            daysInYear--;
+            day--;
             bool meet6 = false;
 
             StringBuilder result = new StringBuilder(14);
