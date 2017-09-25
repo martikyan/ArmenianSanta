@@ -8,7 +8,7 @@
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Hammock.ClientProfile.pdb
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Newtonsoft.Json.xml
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/TweetSharp.pdb
+/home/user/Projects/ArmSantaBot/ArmSantaBot/obj/x86/Debug/ArmSantaBot.csprojResolveAssemblyReference.cache
 /home/user/Projects/ArmSantaBot/ArmSantaBot/obj/x86/Debug/ArmSantaBot.csproj.CoreCompileInputs.cache
 /home/user/Projects/ArmSantaBot/ArmSantaBot/obj/x86/Debug/ArmSantaBot.exe
 /home/user/Projects/ArmSantaBot/ArmSantaBot/obj/x86/Debug/ArmSantaBot.pdb
-/home/user/Projects/ArmSantaBot/ArmSantaBot/obj/x86/Debug/ArmSantaBot.csprojResolveAssemblyReference.cache
