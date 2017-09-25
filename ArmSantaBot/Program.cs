@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using TweetSharp;
+using System.Text;
 
 namespace ArmSantaBot
 {
@@ -44,6 +45,32 @@ namespace ArmSantaBot
 			}
 		}
 
+        private static string PercentageDrawer(int day, bool leapYear = false){
+            int daysInYear = leapYear ? 366 : 365;
+            bool meet6 = false;
+
+            StringBuilder result = new StringBuilder(14);
+            int percentage = day * 100 / daysInYear;
+            //Console.WriteLine(percentage);
+
+            for (int iterator = 1; iterator <= 10; iterator++)
+            {
+                if (iterator == 6 && meet6 == false) {
+                    result.Append($"{percentage} %");
+                    iterator = 4;
+                    meet6 = true;
+                    continue;
+                }
+
+                if(iterator * 10 <= percentage)
+                {
+                    result.Append('▓');
+                    continue;
+                }
+                result.Append('░');
+            }
+            return result.ToString();
+        }
 
 		public static void Main(string[] args)
 		{
@@ -52,7 +79,6 @@ namespace ArmSantaBot
 			DateTime now;
 			DateTime end;
             bool uniqueMessage;
-
 
 			while (true)
 			{
@@ -70,6 +96,8 @@ namespace ArmSantaBot
                     $"{msgDescr[descrIndex]}" + $"{daysLeft} օր:";
 
 				Console.WriteLine("Tweeting the tweet: " + tweet);
+                tweet += "\n" + PercentageDrawer(now.DayOfYear, now.Year % 4 == 0);
+                Console.WriteLine("Posting :{0}", tweet);
 				TService.SendTweet(new SendTweetOptions { Status = tweet });
 			}
 		}
