@@ -27,9 +27,13 @@ namespace ArmSantaBot
 			"անիմաստ թվացող ", "սամֆինգ լայք ", "նեյտրալ ", "մի ամբողջ կյանք՝ ", "ուղիղ ", "սաղ-սաղ ",
 		};
 
+        private static char[,] characters = {
+            {'▓', '░'}, {'⣿','⣀'}, {'⬤','○'}, {'■','□'}, {'▰', '▱'}, {'◼', '▭'}, {'▮', '▯'}, {'⚫', '⚪'} , {'+', '-'}
+        };
 
 		private static void StartTimeConfigurer()
 		{
+            Console.Write("Please wait < 60 seconds");
             Thread.Sleep(1000 * (60 - (DateTime.Now.Second < 5 ? 60 : DateTime.Now.Second)) ); //Sync it to check as minute starts
 			while (true)
 			{
@@ -48,6 +52,8 @@ namespace ArmSantaBot
         private static string PercentageDrawer(int day, bool leapYear = false){
             int daysInYear = leapYear ? 366 : 365;
             day--;
+            //Console.WriteLine("characters.Length / characters.Rank is {0}", characters.Length / characters.Rank);
+            int charmode = rnd.Next(0, characters.Length / characters.Rank);
             bool meet6 = false;
 
             StringBuilder result = new StringBuilder(14);
@@ -57,7 +63,7 @@ namespace ArmSantaBot
             for (int iterator = 1; iterator <= 10; iterator++)
             {
                 if (iterator == 6 && meet6 == false) {
-                    result.Append($"{percentage} %");
+                    result.Append($" {percentage}% ");
                     iterator = 4;
                     meet6 = true;
                     continue;
@@ -65,10 +71,10 @@ namespace ArmSantaBot
 
                 if(iterator * 10 <= percentage)
                 {
-                    result.Append('▓');
+                    result.Append(characters[charmode,0]);
                     continue;
                 }
-                result.Append('░');
+                result.Append(characters[charmode, 1]);
             }
             return result.ToString();
         }
@@ -83,7 +89,7 @@ namespace ArmSantaBot
 
 			while (true)
 			{
-				StartTimeConfigurer();
+				//StartTimeConfigurer();
                 uniqueMessage = false;
 				now = DateTime.Now;
 				end = new DateTime(now.Year + 1, 1, 1);
@@ -96,10 +102,10 @@ namespace ArmSantaBot
                 tweet = (now.Day == 1) ? "Շնորհավոր Նոր Տարի!" : $"{msgStart[startIndex]} մնաց " +
                     $"{msgDescr[descrIndex]}" + $"{daysLeft} օր:";
 
-				Console.WriteLine("Tweeting the tweet: " + tweet);
-                tweet += "\n" + PercentageDrawer(now.DayOfYear, now.Year % 4 == 0);
+				//Console.WriteLine("Tweeting the tweet: " + tweet);
+                tweet += "\n" + PercentageDrawer(now.DayOfYear, leapYear: now.Year % 4 == 0);
                 Console.WriteLine("Posting :{0}", tweet);
-				TService.SendTweet(new SendTweetOptions { Status = tweet });
+				//TService.SendTweet(new SendTweetOptions { Status = tweet });
 			}
 		}
 	}
