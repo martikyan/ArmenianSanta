@@ -37,7 +37,7 @@ namespace ArmSantaBot
             var nextDay = new DateTime(now.Year, now.Month, now.Day + 1);
             int SecondsLeft = (int)(nextDay - now).TotalSeconds + 5;
 			Console.WriteLine("Seconds to wait: {0}", SecondsLeft);
-			Thread.Sleep(SecondsLeft);
+			Thread.Sleep(SecondsLeft * 1000);
 		}
 
         private static string PercentageDrawer(int day, bool leapYear = false){
