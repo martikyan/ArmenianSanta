@@ -33,20 +33,11 @@ namespace ArmSantaBot
 
 		private static void StartTimeConfigurer()
 		{
-            Console.Write("Please wait < 60 seconds");
-            Thread.Sleep(1000 * (60 - (DateTime.Now.Second < 5 ? 60 : DateTime.Now.Second)) ); //Sync it to check as minute starts
-			while (true)
-			{
-				Console.WriteLine("Next hour check in {0} minutes", 60 - DateTime.Now.Minute);
-				Thread.Sleep(1000 * 60 * (60 - DateTime.Now.Minute));
-
-				if (DateTime.Now.Hour == 0)
-				{
-					Console.WriteLine("Hour is 0 so breaking");
-					break;
-				}
-				Console.WriteLine("Hour is {0} so waiting...", DateTime.Now.Hour);
-			}
+            var now = DateTime.Now;
+            var nextDay = new DateTime(now.Year, now.Month, now.Day + 1);
+            int SecondsLeft = (int)(nextDay - now).TotalSeconds + 5;
+			Console.WriteLine("Seconds to wait: {0}", SecondsLeft);
+			Thread.Sleep(SecondsLeft);
 		}
 
         private static string PercentageDrawer(int day, bool leapYear = false){
@@ -89,7 +80,7 @@ namespace ArmSantaBot
 
 			while (true)
 			{
-				//StartTimeConfigurer();
+				StartTimeConfigurer();
                 uniqueMessage = false;
 				now = DateTime.Now;
 				end = new DateTime(now.Year + 1, 1, 1);
@@ -105,7 +96,7 @@ namespace ArmSantaBot
 				//Console.WriteLine("Tweeting the tweet: " + tweet);
                 tweet += "\n" + PercentageDrawer(now.DayOfYear, leapYear: now.Year % 4 == 0);
                 Console.WriteLine("Posting :{0}", tweet);
-				//TService.SendTweet(new SendTweetOptions { Status = tweet });
+				TService.SendTweet(new SendTweetOptions { Status = tweet });
 			}
 		}
 	}
