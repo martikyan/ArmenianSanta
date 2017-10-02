@@ -34,7 +34,15 @@ namespace ArmSantaBot
 		private static void StartTimeConfigurer()
 		{
             var now = DateTime.Now;
-            var nextDay = new DateTime(now.Year, now.Month, now.Day + 1);
+            var nextDay = DateTime.Now.AddDays(1);
+
+            nextDay = nextDay.AddHours(nextDay.Hour * -1);
+            nextDay = nextDay.AddMinutes(nextDay.Minute * -1);
+            nextDay = nextDay.AddSeconds(nextDay.Second * -1);
+            //nextDay = nextDay.AddMilliseconds(nextDay.Millisecond * -1);
+
+			Console.WriteLine($"Now = {now}\nextDay = {nextDay}");
+            //new DateTime(now.Year, now.Month, now.Day + 1);
             int SecondsLeft = (int)(nextDay - now).TotalSeconds + 5;
 			Console.WriteLine("Seconds to wait: {0}", SecondsLeft);
 			Thread.Sleep(SecondsLeft * 1000);
