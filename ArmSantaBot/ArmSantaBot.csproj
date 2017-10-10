@@ -42,6 +42,24 @@
     <Reference Include="TweetSharp">
       <HintPath>..\packages\TweetSharp.2.3.1\lib\4.0\TweetSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Salient.ReflectiveLoggingAdapter.35">
+      <HintPath>..\packages\Salient.ReflectiveLoggingAdapter.1.0.1\lib\net35\Salient.ReflectiveLoggingAdapter.35.dll</HintPath>
+    </Reference>
+    <Reference Include="Salient.ReliableHttpClient">
+      <HintPath>..\packages\Salient.ReliableHttpClient.1.0.2\lib\net35\Release\Salient.ReliableHttpClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Salient.ReliableHttpClient.Serializer.Newtonsoft">
+      <HintPath>..\packages\Salient.ReliableHttpClient.1.0.2\lib\net35\Release\Salient.ReliableHttpClient.Serializer.Newtonsoft.dll</HintPath>
+    </Reference>
+    <Reference Include="CIAPI">
+      <HintPath>..\packages\CIAPI.10.10.0\lib\net35\Release\CIAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="CIAPI.Serializer">
+      <HintPath>..\packages\CIAPI.10.10.0\lib\net35\Release\CIAPI.Serializer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetClient_N2">
+      <HintPath>..\packages\CIAPI.10.10.0\lib\net35\Release\DotNetClient_N2.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
