@@ -56,7 +56,7 @@ namespace ArmSantaBot
             bool meet6 = false;
 
             StringBuilder result = new StringBuilder(14);
-            int percentage = day * 100 / daysInYear;
+            int percentage = (day * 100) / daysInYear;
             //Console.WriteLine(percentage);
 
             for (int iterator = 1; iterator <= 10; iterator++)
