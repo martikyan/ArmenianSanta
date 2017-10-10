@@ -126,8 +126,8 @@ namespace ArmSantaBot
                         tweet.Append("Բարիգուն!");
                     }
                     else
-                        tweet.Append("Բարլուս");
-                    tweet.Append(" \u127877");
+                        tweet.Append("Բարլուս!");
+                    //tweet.Append(" \u127877");
 
 
                     Console.WriteLine($"replying:\n{tweet}");
