@@ -86,16 +86,22 @@ namespace ArmSantaBot
 
         private static void ReplyFunc(string keyword, int count = 5)
         {
-            try
-            {
+            
                 long lastID = 0;
-                var options = new SearchOptions { Q = keyword, Count = count };
+            TwitterSearchResult tweets = null;
+            var options = new SearchOptions {SinceId = 917860182784380999, Q = keyword, Count = count,   };
             restart:
                 StringBuilder tweet = new StringBuilder(64);
                 bool evening = DateTime.Now.Hour >= 18 || DateTime.Now.Hour <= 4;
 
-                var tweets = TService.Search(options);
-
+                try
+                {
+                    tweets = TService.Search(options);
+                } catch(Exception exc){
+                Console.WriteLine(exc.Message + $"keyword was {keyword}");
+                Thread.Sleep(3600000*30);
+                goto restart;
+            }
                 foreach (var t in tweets.Statuses)
                 {
                     if (t.User.ScreenName == "ArmenianSanta")
@@ -107,7 +113,7 @@ namespace ArmSantaBot
                     }
                     else continue;
 
-                    Console.WriteLine($"LastID = {lastID}, ID = {t.Id}");
+                Console.WriteLine($"Found tweet by {t.Author.ScreenName} : {t.Text}");
 
                     tweet.Append($"@{t.User.ScreenName} ");
                     tweet.Append("Հ");
@@ -131,20 +137,16 @@ namespace ArmSantaBot
 
 
                     Console.WriteLine($"replying:\n{tweet}");
+                    try
+                    {
                     TService.SendTweet(new SendTweetOptions { InReplyToStatusId = t.Id, Status = tweet.ToString() });
+                    Console.WriteLine(TService.Response.Error);
+                    } catch (Exception exc) { Console.WriteLine(exc.Message); }
 
-                    //break;
                 }
                 Console.WriteLine("ReplyFunc is sleeping");
                 Thread.Sleep(3600000); // 1 hour 
                 goto restart;
-            }
-            catch (Exception exc)
-            {
-                Console.WriteLine("Exception cought :{0}", exc.Message);
-                Thread.Sleep(100000000);
-                ReplyFunc("armeniansanta");
-            }
         }
 		
 
@@ -160,16 +162,15 @@ namespace ArmSantaBot
 			{
 
                 Thread tNor = new Thread(() => ReplyFunc("Նոր տարի"));
-				Thread tAman = new Thread(() => ReplyFunc("Ամանոր"));
-                Thread tArme = new Thread(() => ReplyFunc("@ArmenianSanta", 1));
+				Thread tDzmer = new Thread(() => ReplyFunc("Ձմեռ"));
+                Thread tAman = new Thread(() => ReplyFunc("Ամանոր"));
+
 
                 tNor.Start();
 				Thread.Sleep(10000);
-
 				tAman.Start();
-				Thread.Sleep(10000);
-
-				tArme.Start();
+                Thread.Sleep(10000);
+                tDzmer.Start();
 
 				StartTimeConfigurer();
                 uniqueMessage = false;
