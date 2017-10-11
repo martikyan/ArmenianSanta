@@ -16,9 +16,9 @@ namespace ArmSantaBot
         private static TwitterService TService =
             new TwitterService(customer_key, customer_key_secret, access_token, access_token_secret);
 
-		private static string[] keyReply = {
-			"ա", "ե", "ի", "ո" ,"ը", "է", "օ", "ու" 
-		};
+        private static string[] keyReply = {
+            "ա", "ե", "ի", "ո" ,"ը", "է", "օ", "ու"
+        };
 
         private static string[] msgStart = {
             "Ամանորին", "Նոր տարվան", "Մեր սիրելի տոնին", "Նվերներին", "Խոզի բուդին",
@@ -86,94 +86,104 @@ namespace ArmSantaBot
 
         private static void ReplyFunc(string keyword, int count = 5)
         {
-            
-                long lastID = 0;
-            TwitterSearchResult tweets = null;
-            var options = new SearchOptions {SinceId = 918232679639695360, Q = keyword, Count = count,   };
-            restart:
-                StringBuilder tweet = new StringBuilder(64);
-                bool evening = DateTime.Now.Hour >= 18 || DateTime.Now.Hour <= 4;
+            long lastMadeGlobalTweetID = 0, lastID = 0;
 
-                try
-                {
-                    tweets = TService.Search(options);
-                } catch(Exception exc){
+            var options = new SearchOptions { Count = 1, Q = "the" };
+            var lastMadeGlobalStatuses = TService.Search(options).Statuses;
+
+            foreach (var temp in lastMadeGlobalStatuses)
+                lastMadeGlobalTweetID = temp.Id;
+            
+            TwitterSearchResult tweets = null;
+            options = new SearchOptions { SinceId = lastMadeGlobalTweetID, Q = keyword, Count = count, };
+        restart:
+            StringBuilder tweet = new StringBuilder(64);
+            bool evening = DateTime.Now.Hour >= 18 || DateTime.Now.Hour <= 4;
+
+            try
+            {
+                tweets = TService.Search(options);
+            }
+            catch (Exception exc)
+            {
                 Console.WriteLine(exc.Message + $"keyword was {keyword}");
-                Thread.Sleep(3600000*30);
+                Thread.Sleep(3600000 * 30);
                 goto restart;
             }
-                foreach (var t in tweets.Statuses)
+            foreach (var t in tweets.Statuses)
+            {
+                if (t.User.ScreenName == "ArmenianSanta")
+                    continue;
+                if (t.Id > lastID)
                 {
-                    if (t.User.ScreenName == "ArmenianSanta")
-                        continue;
-                    if (t.Id > lastID)
-                    {
-                        Console.WriteLine($"in if statement \\ = ing LastID = {lastID}, ID = {t.Id}");
-                        lastID = t.Id;
-                    }
-                    else continue;
+                    Console.WriteLine($"in if statement \\ = ing LastID = {lastID}, ID = {t.Id}");
+                    lastID = t.Id;
+                }
+                else continue;
 
                 Console.WriteLine($"Found tweet by {t.Author.ScreenName} : {t.Text}");
 
-                    tweet.Append($"@{t.User.ScreenName} ");
-                    tweet.Append("Հ");
-                    tweet.Append(keyReply[rnd.Next(0, keyReply.Length)]);
+                tweet.Append($"@{t.User.ScreenName} ");
+                tweet.Append("Հ");
+                tweet.Append(keyReply[rnd.Next(0, keyReply.Length)]);
 
-                    var temp = rnd.Next(0, keyReply.Length);
+                var temp = rnd.Next(0, keyReply.Length);
 
-                    for (byte i = 0; i < 2; i++)
-                    {
-                        tweet.Append("հ");
-                        tweet.Append(keyReply[temp]);
-                    }
-                    tweet.AppendLine("...");
-                    if (evening)
-                    {
-                        tweet.Append("Բարիգուն!");
-                    }
-                    else
-                        tweet.Append("Բարլուս!");
-                    //tweet.Append(" \u127877");
+                for (byte i = 0; i < 2; i++)
+                {
+                    tweet.Append("հ");
+                    tweet.Append(keyReply[temp]);
+                }
+                tweet.AppendLine("...");
+                if (evening)
+                {
+                    tweet.Append("Բարիգուն!");
+                }
+                else
+                    tweet.Append("Բարլուս!");
+                //tweet.Append(" \u127877");
 
 
-                    Console.WriteLine($"replying:\n{tweet}");
-                    try
-                    {
+                Console.WriteLine($"replying:\n{tweet}");
+                try
+                {
                     TService.SendTweet(new SendTweetOptions { InReplyToStatusId = t.Id, Status = tweet.ToString() });
                     Console.WriteLine(TService.Response.Error);
-                    } catch (Exception exc) { Console.WriteLine(exc.Message); }
-
                 }
-                Console.WriteLine("ReplyFunc is sleeping");
-                Thread.Sleep(21600000); // 6 hours 
-                goto restart;
-        }
-		
+                catch (Exception exc) { Console.WriteLine(exc.Message); }
 
-		public static void Main(string[] args)
-		{
-			string tweet;
-			int daysLeft, startIndex, descrIndex;
-			DateTime now;
-			DateTime end;
+            }
+            Console.WriteLine($"ReplyFunc is sleeping, keyword = {keyword}");
+            Thread.Sleep(21600000); // 6 hours
+            goto restart;
+        }
+
+
+        public static void Main(string[] args)
+        {
+            string tweet;
+            int daysLeft, startIndex, descrIndex;
+            DateTime now;
+            DateTime end;
             bool uniqueMessage;
 
-			while (true)
-			{
+            while (true)
+            {
                 Thread[] threads = {new Thread(() => ReplyFunc("Նոր տար")), new Thread(() => ReplyFunc("Ձմեռ")),
                     new Thread(() => ReplyFunc("Ամանոր")), new Thread(() => ReplyFunc("ձմեռ")), new Thread(() => ReplyFunc("dzmer")),
                     new Thread(() => ReplyFunc("nor tari")), new Thread(() => ReplyFunc("nverner")) };
 
-                foreach(var thread in threads){
+                foreach (var thread in threads)
+                {
                     thread.Start();
                     Thread.Sleep(100 * 1000); //100 seconds
                 }
 
-				StartTimeConfigurer();
+                StartTimeConfigurer();
                 uniqueMessage = false;
-				now = DateTime.Now;
-				end = new DateTime(now.Year + 1, 1, 1);
-				daysLeft = (int)(end - now).TotalDays;
+                now = DateTime.Now;
+                end = new DateTime(now.Year + 1, 1, 1);
+                daysLeft = (int)(end - now).TotalDays;
                 uniqueMessage = (rnd.Next(0, 31) >= 25);
 
                 startIndex = uniqueMessage ? rnd.Next(1, msgStart.Length) : 0;
@@ -182,11 +192,11 @@ namespace ArmSantaBot
                 tweet = (now.Day == 1) ? "Շնորհավոր Նոր Տարի!" : $"{msgStart[startIndex]} մնաց " +
                     $"{msgDescr[descrIndex]}" + $"{daysLeft} օր:";
 
-				Console.WriteLine("Tweeting the tweet: " + tweet);
+                Console.WriteLine("Tweeting the tweet: " + tweet);
                 tweet += "\n" + PercentageDrawer(now.DayOfYear, leapYear: now.Year % 4 == 0);
                 Console.WriteLine("Posting :{0}", tweet);
-				TService.SendTweet(new SendTweetOptions { Status = tweet });
-			}
-		}
-	}
+                TService.SendTweet(new SendTweetOptions { Status = tweet });
+            }
+        }
+    }
 }
