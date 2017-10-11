@@ -88,28 +88,22 @@ namespace ArmSantaBot
         {
             long lastMadeGlobalTweetID = 0, lastID = 0;
 
-            var options = new SearchOptions { Count = 1, Q = "the" };
+            var options = new SearchOptions { Count = 4, Q = "the" };
             var lastMadeGlobalStatuses = TService.Search(options).Statuses;
 
             foreach (var temp in lastMadeGlobalStatuses)
-                lastMadeGlobalTweetID = temp.Id;
-            
+            {
+                if (lastMadeGlobalTweetID < temp.Id)
+                    lastMadeGlobalTweetID = temp.Id;
+            }
+            Console.WriteLine($"lastMadeGlobalTweetID = {lastMadeGlobalTweetID}");
             TwitterSearchResult tweets = null;
             options = new SearchOptions { SinceId = lastMadeGlobalTweetID, Q = keyword, Count = count, };
         restart:
             StringBuilder tweet = new StringBuilder(64);
             bool evening = DateTime.Now.Hour >= 18 || DateTime.Now.Hour <= 4;
+            tweets = TService.Search(options);
 
-            try
-            {
-                tweets = TService.Search(options);
-            }
-            catch (Exception exc)
-            {
-                Console.WriteLine(exc.Message + $"keyword was {keyword}");
-                Thread.Sleep(3600000 * 30);
-                goto restart;
-            }
             foreach (var t in tweets.Statuses)
             {
                 if (t.User.ScreenName == "ArmenianSanta")
@@ -145,13 +139,8 @@ namespace ArmSantaBot
 
 
                 Console.WriteLine($"replying:\n{tweet}");
-                try
-                {
-                    TService.SendTweet(new SendTweetOptions { InReplyToStatusId = t.Id, Status = tweet.ToString() });
-                    Console.WriteLine(TService.Response.Error);
-                }
-                catch (Exception exc) { Console.WriteLine(exc.Message); }
-
+                TService.SendTweet(new SendTweetOptions { InReplyToStatusId = t.Id, Status = tweet.ToString() });
+                Console.WriteLine(TService.Response.Error);
             }
             Console.WriteLine($"ReplyFunc is sleeping, keyword = {keyword}");
             Thread.Sleep(21600000); // 6 hours
@@ -176,7 +165,7 @@ namespace ArmSantaBot
                 foreach (var thread in threads)
                 {
                     thread.Start();
-                    Thread.Sleep(100 * 1000); //100 seconds
+                    Thread.Sleep(13 * 1000); //13 seconds
                 }
 
                 StartTimeConfigurer();
