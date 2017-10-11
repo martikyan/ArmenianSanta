@@ -165,7 +165,7 @@ namespace ArmSantaBot
                 foreach (var thread in threads)
                 {
                     thread.Start();
-                    Thread.Sleep(13 * 1000); //13 seconds
+                    //Thread.Sleep(13 * 1000); //13 seconds
                 }
 
                 StartTimeConfigurer();
