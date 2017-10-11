@@ -142,8 +142,9 @@ namespace ArmSantaBot
                 TService.SendTweet(new SendTweetOptions { InReplyToStatusId = t.Id, Status = tweet.ToString() });
                 Console.WriteLine(TService.Response.Error);
             }
-            Console.WriteLine($"ReplyFunc is sleeping, keyword = {keyword}");
-            Thread.Sleep(21600000); // 6 hours
+            var tempSleep = rnd.Next(33 * 60 * 1000, 21600000);
+            Console.WriteLine($"Reply function nap for {(tempSleep/1000)/60} minutes, keyword = {keyword}");
+            Thread.Sleep(tempSleep); //33 minutes to 6 hours
             goto restart;
         }
 

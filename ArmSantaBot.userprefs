@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.ItemProperties.ArmSantaBot PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="ArmSantaBot Status">
     <Files>
-      <File FileName="ArmSantaBot/Program.cs" Line="156" Column="26" />
+      <File FileName="ArmSantaBot/Program.cs" Line="144" Column="14" />
       <File FileName="ArmSantaBot Status" />
     </Files>
     <Pads>
@@ -14,7 +14,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
