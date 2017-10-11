@@ -183,7 +183,7 @@ namespace ArmSantaBot
                 uniqueMessage = false;
                 now = DateTime.Now;
                 end = new DateTime(now.Year + 1, 1, 1);
-                daysLeft = (int)(end - now).TotalDays;
+                daysLeft = (int)(end - now).TotalDays + 1;
                 uniqueMessage = (rnd.Next(0, 31) >= 25);
 
                 startIndex = uniqueMessage ? rnd.Next(1, msgStart.Length) : 0;
