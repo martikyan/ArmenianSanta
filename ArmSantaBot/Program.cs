@@ -89,7 +89,7 @@ namespace ArmSantaBot
             
                 long lastID = 0;
             TwitterSearchResult tweets = null;
-            var options = new SearchOptions {SinceId = 917860182784380999, Q = keyword, Count = count,   };
+            var options = new SearchOptions {SinceId = 918232679639695360, Q = keyword, Count = count,   };
             restart:
                 StringBuilder tweet = new StringBuilder(64);
                 bool evening = DateTime.Now.Hour >= 18 || DateTime.Now.Hour <= 4;
@@ -145,7 +145,7 @@ namespace ArmSantaBot
 
                 }
                 Console.WriteLine("ReplyFunc is sleeping");
-                Thread.Sleep(3600000); // 1 hour 
+                Thread.Sleep(21600000); // 6 hours 
                 goto restart;
         }
 		
@@ -160,17 +160,14 @@ namespace ArmSantaBot
 
 			while (true)
 			{
+                Thread[] threads = {new Thread(() => ReplyFunc("Նոր տար")), new Thread(() => ReplyFunc("Ձմեռ")),
+                    new Thread(() => ReplyFunc("Ամանոր")), new Thread(() => ReplyFunc("ձմեռ")), new Thread(() => ReplyFunc("dzmer")),
+                    new Thread(() => ReplyFunc("nor tari")), new Thread(() => ReplyFunc("nverner")) };
 
-                Thread tNor = new Thread(() => ReplyFunc("Նոր տարի"));
-				Thread tDzmer = new Thread(() => ReplyFunc("Ձմեռ"));
-                Thread tAman = new Thread(() => ReplyFunc("Ամանոր"));
-
-
-                tNor.Start();
-				Thread.Sleep(10000);
-				tAman.Start();
-                Thread.Sleep(10000);
-                tDzmer.Start();
+                foreach(var thread in threads){
+                    thread.Start();
+                    Thread.Sleep(100 * 1000); //100 seconds
+                }
 
 				StartTimeConfigurer();
                 uniqueMessage = false;
@@ -188,7 +185,7 @@ namespace ArmSantaBot
 				Console.WriteLine("Tweeting the tweet: " + tweet);
                 tweet += "\n" + PercentageDrawer(now.DayOfYear, leapYear: now.Year % 4 == 0);
                 Console.WriteLine("Posting :{0}", tweet);
-				//TService.SendTweet(new SendTweetOptions { Status = tweet });
+				TService.SendTweet(new SendTweetOptions { Status = tweet });
 			}
 		}
 	}
