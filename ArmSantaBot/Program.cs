@@ -88,7 +88,7 @@ namespace ArmSantaBot
         {
             long lastMadeGlobalTweetID = 0, lastID = 0;
 
-            var options = new SearchOptions { Count = 4, Q = "the" };
+            var options = new SearchOptions { Count = 4, Q = keyword };
             var lastMadeGlobalStatuses = TService.Search(options).Statuses;
 
             foreach (var temp in lastMadeGlobalStatuses)
@@ -100,7 +100,7 @@ namespace ArmSantaBot
             TwitterSearchResult tweets = null;
             options = new SearchOptions { SinceId = lastMadeGlobalTweetID, Q = keyword, Count = count, };
         restart:
-            StringBuilder tweet = new StringBuilder(64);
+            StringBuilder tweet = new StringBuilder(32);
             bool evening = DateTime.Now.Hour >= 18 || DateTime.Now.Hour <= 4;
             tweets = TService.Search(options);
 

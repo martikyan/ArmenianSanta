@@ -2,17 +2,9 @@
   <MonoDevelop.Ide.ItemProperties.ArmSantaBot PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="ArmSantaBot Status">
     <Files>
-      <File FileName="ArmSantaBot/Program.cs" Line="144" Column="14" />
+      <File FileName="ArmSantaBot/Program.cs" Line="103" Column="55" />
       <File FileName="ArmSantaBot Status" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>now</Value>
-          <Value>lastMadeGlobalTweetID</Value>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
