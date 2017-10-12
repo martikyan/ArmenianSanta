@@ -96,7 +96,7 @@ namespace ArmSantaBot
                 if (lastMadeGlobalTweetID < temp.Id)
                     lastMadeGlobalTweetID = temp.Id;
             }
-            Console.WriteLine($"lastMadeGlobalTweetID = {lastMadeGlobalTweetID}");
+            Console.WriteLine($"lastMadeGlobalTweetID = {lastMadeGlobalTweetID} in {keyword}" );
             TwitterSearchResult tweets = null;
             options = new SearchOptions { SinceId = lastMadeGlobalTweetID, Q = keyword, Count = count, };
         restart:
@@ -159,7 +159,7 @@ namespace ArmSantaBot
 
             while (true)
             {
-                Thread[] threads = {new Thread(() => ReplyFunc("Նոր տար")), new Thread(() => ReplyFunc("Ձմեռ")),
+                Thread[] threads = {new Thread(() => ReplyFunc("Նոր տարի")), new Thread(() => ReplyFunc("Ձմեռ")),
                     new Thread(() => ReplyFunc("Ամանոր")), new Thread(() => ReplyFunc("ձմեռ")), new Thread(() => ReplyFunc("dzmer")),
                     new Thread(() => ReplyFunc("nor tari")), new Thread(() => ReplyFunc("nverner")) };
 
