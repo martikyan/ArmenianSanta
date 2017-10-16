@@ -84,9 +84,11 @@ namespace ArmSantaBot
             return result.ToString();
         }
 
+        private static long lastID = 0;
+
         private static void ReplyFunc(string keyword, int count = 5)
         {
-            long lastMadeGlobalTweetID = 0, lastID = 0;
+            long lastMadeGlobalTweetID = 0;
 
             var options = new SearchOptions { Count = 4, Q = keyword };
             var lastMadeGlobalStatuses = TService.Search(options).Statuses;
@@ -96,6 +98,7 @@ namespace ArmSantaBot
                 if (lastMadeGlobalTweetID < temp.Id)
                     lastMadeGlobalTweetID = temp.Id;
             }
+            lastMadeGlobalTweetID++;
             Console.WriteLine($"lastMadeGlobalTweetID = {lastMadeGlobalTweetID} in {keyword}" );
             TwitterSearchResult tweets = null;
             options = new SearchOptions { SinceId = lastMadeGlobalTweetID, Q = keyword, Count = count, };
