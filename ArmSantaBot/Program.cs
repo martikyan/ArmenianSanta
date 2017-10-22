@@ -69,7 +69,7 @@ namespace ArmSantaBot
                 if (iterator == 6 && meet6 == false)
                 {
                     result.Append($" {percentage}% ");
-                    iterator = 4;
+                    iterator = 5;
                     meet6 = true;
                     continue;
                 }
@@ -162,7 +162,7 @@ namespace ArmSantaBot
 
             while (true)
             {
-                Thread[] threads = {new Thread(() => ReplyFunc("Նոր տարի")), new Thread(() => ReplyFunc("Ձմեռ")),
+                /*Thread[] threads = null;{new Thread(() => ReplyFunc("Նոր տարի")), new Thread(() => ReplyFunc("Ձմեռ")),
                     new Thread(() => ReplyFunc("Ամանոր")), new Thread(() => ReplyFunc("ձմեռ")), new Thread(() => ReplyFunc("dzmer")),
                     new Thread(() => ReplyFunc("nor tari")), new Thread(() => ReplyFunc("nverner")) };
 
@@ -170,7 +170,7 @@ namespace ArmSantaBot
                 {
                     thread.Start();
                     //Thread.Sleep(13 * 1000); //13 seconds
-                }
+                }*/
 
                 StartTimeConfigurer();
                 uniqueMessage = false;
