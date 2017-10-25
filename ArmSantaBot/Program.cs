@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
-using TweetSharp;
 using System.Text;
+using Tweetinvi;
 
 namespace ArmSantaBot
 {
@@ -13,8 +13,6 @@ namespace ArmSantaBot
         private static string access_token_secret = "zxsmcBgMXodq9pPYNBESwWsSFv5yDLVVHkutp67Q33L3c";
 
         private static Random rnd = new Random((int)DateTime.Now.Ticks);
-        private static TwitterService TService =
-            new TwitterService(customer_key, customer_key_secret, access_token, access_token_secret);
 
         private static string[] keyReply = {
             "ա", "ե", "ի", "ո" ,"ը", "է", "օ", "ու"
@@ -84,9 +82,9 @@ namespace ArmSantaBot
             return result.ToString();
         }
 
-        private static long lastID = 0;
+        //private static long lastID = 0;
 
-        private static void ReplyFunc(string keyword, int count = 5)
+        /*private static void ReplyFunc(string keyword, int count = 5)
         {
             long lastMadeGlobalTweetID = 0;
 
@@ -149,7 +147,7 @@ namespace ArmSantaBot
             Console.WriteLine($"Reply function nap for {(tempSleep/1000)/60} minutes, keyword = {keyword}");
             Thread.Sleep(tempSleep); //33 minutes to 6 hours
             goto restart;
-        }
+        }*/
 
 
         public static void Main(string[] args)
@@ -159,6 +157,8 @@ namespace ArmSantaBot
             DateTime now;
             DateTime end;
             bool uniqueMessage;
+
+            Auth.SetUserCredentials(customer_key, customer_key_secret, access_token, access_token_secret);
 
             while (true)
             {
@@ -188,7 +188,8 @@ namespace ArmSantaBot
                 Console.WriteLine("Tweeting the tweet: " + tweet);
                 tweet += "\n" + PercentageDrawer(now.DayOfYear, leapYear: now.Year % 4 == 0);
                 Console.WriteLine("Posting :{0}", tweet);
-                TService.SendTweet(new SendTweetOptions { Status = tweet });
+
+                Tweet.PublishTweet(tweet);
             }
         }
     }

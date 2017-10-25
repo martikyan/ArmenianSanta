@@ -2,9 +2,23 @@
   <MonoDevelop.Ide.ItemProperties.ArmSantaBot PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="ArmSantaBot Status">
     <Files>
-      <File FileName="ArmSantaBot/Program.cs" Line="187" Column="17" />
+      <File FileName="ArmSantaBot/Program.cs" Line="192" Column="43" />
       <File FileName="ArmSantaBot Status" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ArmSantaBot" expanded="True">
+            <Node name="ArmSantaBot" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="Packages" expanded="True">
+                <Node name="System.Net.Http" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
