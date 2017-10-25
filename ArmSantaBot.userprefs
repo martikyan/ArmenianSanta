@@ -11,9 +11,8 @@
           <Node name="ArmSantaBot" expanded="True">
             <Node name="ArmSantaBot" expanded="True">
               <Node name="References" expanded="True" />
-              <Node name="Packages" expanded="True">
-                <Node name="System.Net.Http" selected="True" />
-              </Node>
+              <Node name="Packages" expanded="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>

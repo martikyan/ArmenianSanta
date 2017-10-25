@@ -4,9 +4,6 @@
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/CIAPI.dll
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/CIAPI.Serializer.dll
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/DotNetClient_N2.dll
-/home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Hammock.ClientProfile.dll
-/home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Hammock.dll
-/home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Newtonsoft.Json.dll
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Nito.AsyncEx.Context.dll
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Nito.AsyncEx.Tasks.dll
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Nito.Disposables.dll
@@ -29,16 +26,12 @@
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Tweetinvi.Security.dll
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Tweetinvi.Streams.dll
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Tweetinvi.WebLogic.dll
-/home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/TweetSharp.dll
-/home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Hammock.pdb
-/home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Hammock.ClientProfile.pdb
-/home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/TweetSharp.pdb
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Salient.ReflectiveLoggingAdapter.35.pdb
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Autofac.xml
-/home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Newtonsoft.Json.xml
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Nito.Disposables.xml
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Nito.AsyncEx.Tasks.xml
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Nito.AsyncEx.Context.xml
 /home/user/Projects/ArmSantaBot/ArmSantaBot/obj/x86/Debug/ArmSantaBot.csproj.CoreCompileInputs.cache
 /home/user/Projects/ArmSantaBot/ArmSantaBot/obj/x86/Debug/ArmSantaBot.exe
 /home/user/Projects/ArmSantaBot/ArmSantaBot/obj/x86/Debug/ArmSantaBot.pdb
+/home/user/Projects/ArmSantaBot/ArmSantaBot/obj/x86/Debug/ArmSantaBot.csprojResolveAssemblyReference.cache
