@@ -182,7 +182,7 @@ namespace ArmSantaBot
                 startIndex = uniqueMessage ? rnd.Next(1, msgStart.Length) : 0;
                 descrIndex = uniqueMessage ? rnd.Next(1, msgDescr.Length) : 0;
 
-                tweet = (now.Day == 1) ? "Շնորհավոր Նոր Տարի!" : $"{msgStart[startIndex]} մնաց " +
+                tweet = (now.Day == 1 && now.Month == 1) ? "Շնորհավոր Նոր Տարի!" : $"{msgStart[startIndex]} մնաց " +
                     $"{msgDescr[descrIndex]}" + $"{daysLeft} օր:";
 
                 Console.WriteLine("Tweeting the tweet: " + tweet);
