@@ -7,8 +7,8 @@ namespace ArmSantaBot
 {
     internal class Program
     {
-        private static string customer_key = "EbRpdbdaveroRM3vCJBwDyGqC";
-        private static string customer_key_secret = "KM05O4q90YspeSaJJ5zt4nR2uppUpztqkaKY7nUnZ3o4psJARQ";
+        private static string customer_key = "dVVZcETjEOqHGIveIpbvpwFjy";
+        private static string customer_key_secret = "e7ETdM1IvvFnLnDQspJ008alr22WBXGxh7wguOAwgNfs7rxL6w";
         private static string access_token = "911687372529643522-v5MaXvflkLU9zSKnJaNC3P7Bek0SALw";
         private static string access_token_secret = "zxsmcBgMXodq9pPYNBESwWsSFv5yDLVVHkutp67Q33L3c";
 
