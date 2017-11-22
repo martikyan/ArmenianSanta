@@ -2,15 +2,15 @@
 using System.Threading;
 using System.Text;
 using Tweetinvi;
-
+using System.Configuration;
 namespace ArmSantaBot
 {
     internal class Program
     {
-        private static string customer_key = "dVVZcETjEOqHGIveIpbvpwFjy";
-        private static string customer_key_secret = "e7ETdM1IvvFnLnDQspJ008alr22WBXGxh7wguOAwgNfs7rxL6w";
-        private static string access_token = "911687372529643522-v5MaXvflkLU9zSKnJaNC3P7Bek0SALw";
-        private static string access_token_secret = "zxsmcBgMXodq9pPYNBESwWsSFv5yDLVVHkutp67Q33L3c";
+        private static string customer_key = ConfigurationManager.AppSettings["CustomerKey"];
+        private static string customer_key_secret = ConfigurationManager.AppSettings["CustomerKeySecret"];
+        private static string access_token = ConfigurationManager.AppSettings["AccessToken"];
+        private static string access_token_secret = ConfigurationManager.AppSettings["AccessTokenSecret"];
 
         private static Random rnd = new Random((int)DateTime.Now.Ticks);
 
@@ -81,74 +81,6 @@ namespace ArmSantaBot
             }
             return result.ToString();
         }
-
-        //private static long lastID = 0;
-
-        /*private static void ReplyFunc(string keyword, int count = 5)
-        {
-            long lastMadeGlobalTweetID = 0;
-
-            var options = new SearchOptions { Count = 4, Q = keyword };
-            var lastMadeGlobalStatuses = TService.Search(options).Statuses;
-
-            foreach (var temp in lastMadeGlobalStatuses)
-            {
-                if (lastMadeGlobalTweetID < temp.Id)
-                    lastMadeGlobalTweetID = temp.Id;
-            }
-            lastMadeGlobalTweetID++;
-            Console.WriteLine($"lastMadeGlobalTweetID = {lastMadeGlobalTweetID} in {keyword}" );
-            TwitterSearchResult tweets = null;
-            options = new SearchOptions { SinceId = lastMadeGlobalTweetID, Q = keyword, Count = count, };
-        restart:
-            StringBuilder tweet = new StringBuilder(32);
-            bool evening = DateTime.Now.Hour >= 18 || DateTime.Now.Hour <= 4;
-            tweets = TService.Search(options);
-
-            foreach (var t in tweets.Statuses)
-            {
-                if (t.User.ScreenName == "ArmenianSanta")
-                    continue;
-                if (t.Id > lastID)
-                {
-                    Console.WriteLine($"in if statement \\ = ing LastID = {lastID}, ID = {t.Id}");
-                    lastID = t.Id;
-                }
-                else continue;
-
-                Console.WriteLine($"Found tweet by {t.Author.ScreenName} : {t.Text}");
-
-                tweet.Append($"@{t.User.ScreenName} ");
-                tweet.Append("Հ");
-                tweet.Append(keyReply[rnd.Next(0, keyReply.Length)]);
-
-                var temp = rnd.Next(0, keyReply.Length);
-
-                for (byte i = 0; i < 2; i++)
-                {
-                    tweet.Append("հ");
-                    tweet.Append(keyReply[temp]);
-                }
-                tweet.AppendLine("...");
-                if (evening)
-                {
-                    tweet.Append("Բարիգուն!");
-                }
-                else
-                    tweet.Append("Բարլուս!");
-                //tweet.Append(" \u127877");
-
-
-                Console.WriteLine($"replying:\n{tweet}");
-                TService.SendTweet(new SendTweetOptions { InReplyToStatusId = t.Id, Status = tweet.ToString() });
-                Console.WriteLine(TService.Response.Error);
-            }
-            var tempSleep = rnd.Next(33 * 60 * 1000, 21600000);
-            Console.WriteLine($"Reply function nap for {(tempSleep/1000)/60} minutes, keyword = {keyword}");
-            Thread.Sleep(tempSleep); //33 minutes to 6 hours
-            goto restart;
-        }*/
-
 
         public static void Main(string[] args)
         {
