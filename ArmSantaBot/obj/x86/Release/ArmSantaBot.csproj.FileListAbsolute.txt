@@ -1,3 +1,5 @@
+/home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Release/APIKeys.config
+/home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Release/ArmSantaBot.exe.config
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Release/ArmSantaBot.exe
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Release/Autofac.dll
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Release/Newtonsoft.Json.dll
@@ -27,6 +29,3 @@
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Release/Nito.AsyncEx.Context.xml
 /home/user/Projects/ArmSantaBot/ArmSantaBot/obj/x86/Release/ArmSantaBot.csproj.CoreCompileInputs.cache
 /home/user/Projects/ArmSantaBot/ArmSantaBot/obj/x86/Release/ArmSantaBot.exe
-/home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Release/APIKeys.config
-/home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Release/ArmSantaBot.exe.config
-/home/user/Projects/ArmSantaBot/ArmSantaBot/obj/x86/Release/ArmSantaBot.csprojResolveAssemblyReference.cache

@@ -1,3 +1,5 @@
+/home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/APIKeys.config
+/home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/ArmSantaBot.exe.config
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/ArmSantaBot.exe
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/ArmSantaBot.pdb
 /home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/Autofac.dll
@@ -29,6 +31,3 @@
 /home/user/Projects/ArmSantaBot/ArmSantaBot/obj/x86/Debug/ArmSantaBot.csproj.CoreCompileInputs.cache
 /home/user/Projects/ArmSantaBot/ArmSantaBot/obj/x86/Debug/ArmSantaBot.exe
 /home/user/Projects/ArmSantaBot/ArmSantaBot/obj/x86/Debug/ArmSantaBot.pdb
-/home/user/Projects/ArmSantaBot/ArmSantaBot/obj/x86/Debug/ArmSantaBot.csprojResolveAssemblyReference.cache
-/home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/ArmSantaBot.exe.config
-/home/user/Projects/ArmSantaBot/ArmSantaBot/bin/Debug/APIKeys.config
