@@ -56,7 +56,9 @@ namespace ArmSantaBot
         private static string PercentageDrawer(int day, bool leapYear = false)
         {
             int daysInYear = leapYear ? 366 : 365;
-            day--;
+            if (day == 1) {
+                day = daysInYear;
+            } else { day--; }
             //Console.WriteLine("characters.Length / characters.Rank is {0}", characters.Length / characters.Rank);
             int charmode = rnd.Next(0, characters.Length / characters.Rank);
             bool meet6 = false;
@@ -117,7 +119,7 @@ namespace ArmSantaBot
                 startIndex = uniqueMessage ? rnd.Next(1, msgStart.Length) : 0;
                 descrIndex = uniqueMessage ? rnd.Next(1, msgDescr.Length) : 0;
 
-                tweet = (now.Day == 1 && now.Month == 1) ? "Շնորհավոր Նոր Տարի՜\nՇնորհակալ եմ ինձ հետ լինելու համար։ \ud83c\udf85": $"{msgStart[startIndex]} մնաց " +
+                tweet = (now.Day == 1 && now.Month == 1) ? "Շնորհավոր Նոր Տարի՜\nՇնորհակալ եմ ինձ հետ լինելու համար։ \ud83c\udf85\n\ud83c\udf84\ud83c\udf84\ud83c\udf84\ud83c\udf84\ud83c\udf84 100% \ud83c\udf84\ud83c\udf84\ud83c\udf84\ud83c\udf84\ud83c\udf84": $"{msgStart[startIndex]} մնաց " +
                     $"{msgDescr[descrIndex]}" + $"{daysLeft} օր:";
 
                 Console.WriteLine("Tweeting the tweet: " + tweet);
